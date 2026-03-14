@@ -39,6 +39,11 @@ jobs:
               working-directory: ./frontend
               run: npm install 
 
+            - name: Fix ESLint Permissions
+              run: |
+                chmod +x backend/node_modules/.bin/eslint
+                chmod +x frontend/node_modules/.bin/eslint
+                
             # 1. LINT: Checks for syntax and style errors in your JS files
             - name: Run ESLint for backend
               working-directory: ./backend 
