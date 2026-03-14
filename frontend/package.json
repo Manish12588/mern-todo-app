@@ -11,7 +11,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "npx eslint ."
+    "lint": "./node_modules/.bin/eslint ."
   },
   "browserslist": {
     "production": [
