@@ -30,10 +30,11 @@ export default [
         version: "detect",
       }
     },
-    rules: {
-      "no-unused-vars": "warn",
-      "react/prop-types": "warn",
-      "react/react-in-jsx-scope": "off", // fix 'React is defined but never used'
-    }
+   rules: {
+  "no-unused-vars": ["warn", { 
+    "varsIgnorePattern": "^React$|^App$" 
+  }],
+  "react/react-in-jsx-scope": "off",
+}
   }
 ];
