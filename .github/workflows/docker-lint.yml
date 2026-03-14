@@ -28,13 +28,24 @@ jobs:
                 dockerfile: frontend/Dockerfile
                 failure-threshold: error
 
-            - name: Validate Docker Compose
-              run: |
-                docker compose config --quiet
-                echo "Docker Compose file is valid"
-                
+            #- name: Validate Docker Compose
+            #  run: |
+            #    docker compose config --quiet
+            #    echo "Docker Compose file is valid"
+
             #- name: Validate Dockerfile
             #  uses: hadolint/hadolint-action@v3.1.0
             #  with:
             #    dockerfile: "**Dockerfile"
             #    recursive: true
+
+            # Validate docker-compose file
+            - name: Validate Docker Compose
+              run: docker compose config
+
+            # Validate docker-compose syntax with additional tool
+            - name: Install docker-compose-linter
+              run: npm install -g @zavoloklom/dclint
+
+            - name: Lint Docker Compose
+              run: dclint docker-compose.yml
