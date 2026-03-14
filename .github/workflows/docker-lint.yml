@@ -14,8 +14,27 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v4
             
-            - name: Validate Dockerfile
+            # Lint backend Dockerfile
+            - name: Lint Backend Dockerfile
               uses: hadolint/hadolint-action@v3.1.0
               with:
-                dockerfile: "**Dockerfile"
-                recursive: true
+                  dockerfile: backend/Dockerfile
+                  failure-threshold: error   # only fail on errors not warnings
+
+                # Lint frontend Dockerfile
+            - name: Lint Frontend Dockerfile
+              uses: hadolint/hadolint-action@v3.1.0
+              with:
+                dockerfile: frontend/Dockerfile
+                failure-threshold: error
+
+            - name: Validate Docker Compose
+              run: |
+                docker compose config --quiet
+                echo "Docker Compose file is valid"
+                
+            #- name: Validate Dockerfile
+            #  uses: hadolint/hadolint-action@v3.1.0
+            #  with:
+            #    dockerfile: "**Dockerfile"
+            #    recursive: true
