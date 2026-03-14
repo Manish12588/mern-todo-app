@@ -1,0 +1,58 @@
+name: Code Quality Check
+
+on:
+    #workflow_call:
+    workflow_dispatch:
+      
+      
+jobs:
+    code-quality-check:
+        name: This job will scan the code for quality check
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                python-version: ["3.12","3.13"]
+        steps:
+            - name: Checkout the code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: "20"
+            
+            - name: Setup Python ${{matrix.python-version}}
+              uses: actions/setup-python@v5
+              with:
+                python-version: ${{matrix.python-version}}
+                
+            - name: Install Backend Dependencies
+              working-directory: ./backend
+              run: npm install    
+            
+            - name: Install Frontend Dependencies
+              working-directory: ./frontend
+              run: npm install 
+            
+            # 1. LINT: Checks for syntax and style errors in your JS files
+            - name: Run ESLint for backend
+              working-directory: ./backend 
+              run: npm run lint
+            
+            # 1. LINT: Checks for syntax and style errors in your JS files
+            - name: Run ESLint for frontend 
+              working-directory: ./frontend 
+              run: npm run lint
+            
+            # 2. SAST: Scans your actual code for security flaws (like Bandit)
+            - name: Run njsscan (Static Analysis) for backend
+              run: |
+                pip install njsscan
+                njsscan ./backend
+            
+            # 2. SAST: Scans your actual code for security flaws (like Bandit)
+            - name: Run njsscan (Static Analysis) for frontend
+              run: |
+                pip install njsscan
+                njsscan ./frontend
