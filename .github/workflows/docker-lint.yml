@@ -45,7 +45,7 @@ jobs:
 
             # Validate docker-compose syntax with additional tool
             - name: Install docker-compose-linter
-              run: npm install -g @zavoloklom/dclint
+              run: npm install -g dclint
 
             - name: Lint Docker Compose
               run: dclint docker-compose.yml
