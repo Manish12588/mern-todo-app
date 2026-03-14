@@ -21,6 +21,10 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: "20"
+                cache: "npm"
+                cache-dependency-path: |
+                  backend/package-lock.json
+                  frontend/package-lock.json
             
             - name: Setup Python ${{matrix.python-version}}
               uses: actions/setup-python@v5
@@ -41,7 +45,7 @@ jobs:
               run: npm run lint
             
             # 1. LINT: Checks for syntax and style errors in your JS files
-            - name: Run ESLint for frontend 
+            - name: Run      for frontend 
               working-directory: ./frontend 
               run: npm run lint
             
