@@ -10,10 +10,20 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint":"eslint ."
+    "lint": "eslint ."
   },
   "browserslist": {
-    "production": [">0.2%", "not dead"],
-    "development": ["last 1 chrome version"]
+    "production": [
+      ">0.2%",
+      "not dead"
+    ],
+    "development": [
+      "last 1 chrome version"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^9.7.0",
+    "eslint-plugin-react": "^7.37.5"
   }
 }
