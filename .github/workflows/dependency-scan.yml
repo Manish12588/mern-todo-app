@@ -27,6 +27,6 @@ jobs:
               # Fails the build if "high" or "critical" vulnerabilities are found
             - name: Run npm Audit
               working-directory: |
-                ./backend
-                ./frontend
+                backend
+                frontend
               run: npm audit --audit-level=high
