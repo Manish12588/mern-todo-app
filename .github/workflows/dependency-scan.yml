@@ -29,7 +29,7 @@ jobs:
               run: npm install
 
               # Fails the build if "high" or "critical" vulnerabilities are found
-            - name: Run npm Audit
+            - name: Run npm Audit for Backend
               working-directory: ./backend
               run: npm audit --audit-level=high
 
@@ -37,6 +37,6 @@ jobs:
               working-directory: ./frontend
               run: npm install              
 
-            - name: Run npm Audit
+            - name: Run npm Audit for Frontend
               working-directory: ./frontend
               run: npm audit --audit-level=high
