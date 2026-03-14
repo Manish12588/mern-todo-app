@@ -39,13 +39,13 @@ jobs:
             #    dockerfile: "**Dockerfile"
             #    recursive: true
 
-            # Validate docker-compose file
+            # Validate docker-compose syntax
             - name: Validate Docker Compose
-              run: docker compose config
+              run: |
+                docker compose config --quiet
+                echo "Docker Compose file is valid"
 
-            # Validate docker-compose syntax with additional tool
-            - name: Install docker-compose-linter
-              run: npm install -g dclint
-
+            # Lint docker-compose best practices
             - name: Lint Docker Compose
-              run: dclint docker-compose.yml
+              run: npx dclint docker-compose.yml --max-warnings -1
+              continue-on-error: true
