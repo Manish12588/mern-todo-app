@@ -23,10 +23,20 @@ jobs:
                 cache-dependency-path: |
                   backend/package-lock.json
                   frontend/package-lock.json
+            
+            - name: Install Backend Dependencies
+              working-directory: ./backend
+              run: npm install
 
               # Fails the build if "high" or "critical" vulnerabilities are found
             - name: Run npm Audit
-              working-directory: |
-                backend
-                frontend
+              working-directory: ./backend
+              run: npm audit --audit-level=high
+
+            - name: Install Frontend Dependencies
+              working-directory: ./frontend
+              run: npm install              
+
+            - name: Run npm Audit
+              working-directory: ./frontend
               run: npm audit --audit-level=high
