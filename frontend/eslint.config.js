@@ -19,6 +19,10 @@ export default [
         process: "readonly",
         window: "readonly",
         document: "readonly",
+        fetch: "readonly",        // fix 'fetch is not defined'
+        alert: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
       }
     },
     settings: {
@@ -29,6 +33,7 @@ export default [
     rules: {
       "no-unused-vars": "warn",
       "react/prop-types": "warn",
+      "react/react-in-jsx-scope": "off", // fix 'React is defined but never used'
     }
   }
 ];
