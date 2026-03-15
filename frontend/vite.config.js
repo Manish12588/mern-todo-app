@@ -7,13 +7,13 @@ export default defineConfig({
     port: 3000,
   },
   esbuild: {
-    loader: 'jsx',        // treat .js files as jsx
-    include: /src\/.*\.js$/,  // apply to all .js files in src
+    loader: 'jsx',
+    include: /src\/.*\.js$/,
   },
   optimizeDeps: {
     esbuildOptions: {
       loader: {
-        '.js': 'jsx'      // also apply during dependency optimization
+        '.js': 'jsx'
       }
     }
   }
