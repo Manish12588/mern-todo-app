@@ -5,16 +5,5 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-  },
-  esbuild: {
-    loader: 'jsx',
-    include: /src\/.*\.js$/,
-  },
-  optimizeDeps: {
-    esbuildOptions: {
-      loader: {
-        '.js': 'jsx'
-      }
-    }
   }
 })
